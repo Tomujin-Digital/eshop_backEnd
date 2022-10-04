@@ -1,0 +1,12 @@
+{
+        "type": "service_account",
+        "project_id": "td-spirits-ae1f1",
+        "private_key_id": "94a311dde77e2db8595d6827bbbab5b27ed0241d",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCb9jghbFddegdT\nFw2zYDuHT50p204XeOAoHyDksWZpuR2vo/2R9OSBkfzH4FreT0ELQ9eM58Ptg6z+\nP2W0TiW9jOCow5OYO/tRZkp33ES0gbrvpAbZ0vM8leu0wQfV9rSs7tiNSemK14Bb\nBwpMTqjq0Cl7VRm9WFZ5V3Imotc6kBt8xKbfWh9rMFHBpPPM6+rxofUvAH+Pj7IK\nQetVJYaIG1IiuPwNJ+TGtDffWkqAKq3XRTH5jYZ4yJ8QkNSZ71l3A878D/MUy0uu\n0nzGWLJ3SFobh9kC59X11RuGLbXwER3O/UeeTKueTl86ywWuAPUFVPtPImHxpZkl\n57K8K4Y9AgMBAAECggEAB4OZ2bZkEStfbffm35UL2S2TR2B7BzN6LUSuq4YGhqJ2\nFS/D+EPBvKJheOnMxvgvjJDksjO6Y1ecPpWkW0cGl3bRnh/qHQQKzDWu8c5pev7j\nGEehUt5QfMNGW2uPapYbx1cslMYSW++dDgWtT9bcWY/U583GUzKN3APECqt+ziHv\nB1aGMakcsQiKjXmknISj77HozWZul3VaDcQreq/0MeaKEaOq8MZZN+eTVDWc2dcU\neT4g0uS+DMjTfUMpQV8XX3m/HNsxJRuwng7ZR23WgcsPWMUAwQIMCaDKR21lgoS7\nYeds9rzrDFLxYgdHVl+3zIVECNrfTU/7zy23Ihh5iwKBgQDLP9eI4qf408PuIig+\nbxyMCGGLEsfuZNFUsuaqBDIP9na/mIGVH3P6O5+8ujubmSFGX32glu/8B54Ldaf9\n1Saq1s2D3/bQXMDAV7z3IAk9giFOJZhTHRCBKirph3c6QVZYXUbtzEq7EmRKdvZL\nvJKl2NADAoFE6MncFMXslGb98wKBgQDEcIb/kXzQb4PF2KFjgaAlrywvoPcZJEMW\nGw7HoascleFh631Ipqf1OZLxIRIchatKAscJF+XTSZICJWrDWSBYzPTwNt6Ourro\nmVOZfa5xirF5WNyMlfTCJ2rM/wXcx2XZ8hKLwBljX0hGjGbgzpqajlVVNBx1g9Ql\n4tXHoUsHDwKBgCNdMVhc75MI7Z9ijBQI6zOmRaqYEvd0zUNqeV39quRCIvlFRM64\nkUpp02pYEQUKyNJgzRADEzCL9sDRsPAmhTrWcx3N+zjX2qXc3kE1bsYn/TmGqxFT\nDksbFipZ6rHVKnvnhu7bS+lu0spuFn6pCe8XYWIUrn9Z7b2AU8vNKnpnAoGBAMHU\nLsCaM8gPYLylhomC7ByC/lx4vZinOTLku+6rTQXFtkBCdrprBytnBeC7uv09v8gl\neXM1i2ayH0nS1cevd8VnZwBng67d/XNpZx3671fFfFy6G9T0WjABaNahhI1Wit9E\nhpwyjlqJN+20uAZ2lgKPExAhfTtPOtOvQTXbpwZtAoGBAIAGmzmBGZhLHdLrRTnb\nmeSHor58gsMbGDt6J98M3ORc5ftaWRx58nX6BDI8IWN/PAywWvrcetWw7V/sWzZf\nge7D0Ly8JwdhrnFGpDHAx5nJpCzLSXWSPZomsyLrSUcjck1T0RyKqKHbhIC6Cmo5\nuKzeRGmGwXzqyVTvMtls8Kdk\n-----END PRIVATE KEY-----\n",
+        "client_email": "firebase-adminsdk-amuyd@td-spirits-ae1f1.iam.gserviceaccount.com",
+        "client_id": "110363155979796685496",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-amuyd%40td-spirits-ae1f1.iam.gserviceaccount.com"
+      }
