@@ -1,9 +1,9 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 
 import { AddItem } from './dto/Item.dto';
-import { itemDetailDto } from 'src/dto/detail-item.dto';
-import { categorySearch } from 'src/dto/item-Search.dto';
-import { ItemService } from './item.service';
+import { ItemDetail } from './dto/Item.dto';
+import { SearchByCat } from './dto/Item.dto';
+import { ItemService } from './items.service';
 
 @Controller('/item')
 export class ItemController {
@@ -13,11 +13,11 @@ export class ItemController {
       return this.itemService.items()
     }
   @Post('/catoItems')
-  catoItems(@Body() categorySearch: categorySearch) {
-    return this.itemService.searchbyCat(categorySearch)
+  catoItems(@Body() searchByCat: SearchByCat) {
+    return this.itemService.searchbyCat(searchByCat)
   }
   @Post('/detail')
-  detail(@Body() itemDetailDto: itemDetailDto) {
+  detail(@Body() itemDetailDto: ItemDetail) {
     return this.itemService.detail(itemDetailDto)
   }
   @Post('/addItem')

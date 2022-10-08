@@ -1,7 +1,9 @@
 import { Global, Module } from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { AppModule } from "src/app.module";
+import { ItemController } from "./items.controller";
 import { Item } from "./models/item.model";
+import { ItemService } from "./items.service";
 
 @Global()
 @Module({

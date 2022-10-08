@@ -1,11 +1,9 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Model, Sequelize } from 'sequelize-typescript';
-import { connector } from 'src/utils/connector';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { User } from './models/user.model';
 import { UpdatePicDto } from './dto/update-pic.dto';
-import { data } from 'cheerio/lib/api/attributes';
 
 @Injectable()
 export class UserService {
