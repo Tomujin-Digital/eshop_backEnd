@@ -45,11 +45,11 @@ export const multerOptions = {
   imports: [
     SequelizeModule.forRoot({
       dialect: "mysql",
-      host: "127.0.0.1",
+      host: "54.169.69.87",
       port: 3306,
-      username: "Khegal",
-      password: "Khegal1290@",
-      database: "sys",
+      username: "rtd",
+      password: "Tiny722$",
+      database: "grinding_geeks",
       models: [
         User,Item, Basket, BasketItem, BillDetail, ItemImages, Brands, Category
       ],

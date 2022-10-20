@@ -34,7 +34,7 @@ export class ItemService {
           }});
           if(!itemCheck) 
           return true;
-          throw new HttpException('ITEM_NAME_ALREADY_EXISTS', 400);
+          throw new HttpException('ITEM_ALREADY_EXISTS', 400);
         }
       }
 
