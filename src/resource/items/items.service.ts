@@ -17,101 +17,113 @@ export type itemCheck={
 export type itemInBasket={
   itemId: string;
   basketId: string;
+  count: number;
 }
 @Injectable()
 export class ItemService {
-    constructor(
-        @InjectModel(Item) private itemModel: typeof Item,
-        @InjectModel(Basket) private basketModel: typeof Basket,
-        @InjectModel(BasketItem) private basketItemModel: typeof BasketItem,
-        @InjectModel(User) private userModel: typeof User,
-      ) {}
+  constructor(
+    @InjectModel(Item) private itemModel: typeof Item,
+    @InjectModel(Basket) private basketModel: typeof Basket,
+    @InjectModel(BasketItem) private basketItemModel: typeof BasketItem,
+    @InjectModel(User) private userModel: typeof User,
+    ) {}
 
-      async itemCheck({ itemName }: itemCheck): Promise<any>{
-        if(!!itemName){
-          const itemCheck= await this.itemModel.findOne({where:{
-            itemName: itemName
-          }});
-          if(!itemCheck) 
-          return true;
-          throw new HttpException('ITEM_ALREADY_EXISTS', 400);
-        }
+    async itemCheck({ itemName }: itemCheck): Promise<any>{
+      if(!!itemName){
+        const itemCheck= await this.itemModel.findOne({where:{
+          itemName: itemName
+        }});
+        if(!itemCheck) 
+        return true;
+        throw new HttpException('ITEM_ALREADY_EXISTS', 400);
       }
+    }
 
-      async itemInbBasket({ itemId, basketId}: itemInBasket): Promise<any>{
-        if(!!itemId || !!basketId) {
-          const itemCheck = await this.basketItemModel.findOne({
-            where: {
-              itemId: itemId,
-              basketId: basketId,
-            }
+    async AddItemInBasket({ itemId, basketId, count}: itemInBasket): Promise<any>{
+      if(!!itemId || !!basketId) {
+        const itemCheck = await this.basketItemModel.findOne({
+          where: {
+            itemId: itemId,
+            basketId: basketId,
+          }
+        })
+        if (itemCheck){
+          this.basketItemModel
+          .update({ count:itemCheck.count +1 }, {where: { itemId: itemId, basketId: basketId}})
+          itemCheck.save()
+        }else{
+          const Item = new this.basketItemModel({
+            basketId: basketId,
+            itemId: itemId,
+            count: count
           })
-          if (itemCheck){
-            this.basketItemModel
-              .update({ count:itemCheck.count +1 }, {where: { itemId: itemId, basketId: basketId}})
-              itemCheck.save()
-          }
+          Item.save()
+          return Item
         }
       }
-      async items(){
-        const items = await this.itemModel.findAll()
-        return items
-      }
-      async detail(data: ItemDetail) {
-        const itemDetail = await this.itemModel.findOne({
-          where: {
-            id: data.id,
-          }
-        })
-        return itemDetail
-      }
-
-      async addNewItem(data: AddNewItem){
-        let checkedItem = await this.itemCheck({ itemName: data.itemName }) 
-        if ( checkedItem = true) {
-          const newItem = new this.itemModel({
-            itemName: data.itemName,
-            price: data.price,
-            brandId: data.brandName,
-            categotyId: data.categoryId,
-            quantity: data.quantity
-          }) 
-          newItem.save();
-          return newItem
+    }
+    async items(){
+      const items = await this.itemModel.findAll()
+      return items
+    }
+    async detail(data: ItemDetail) {
+      const itemDetail = await this.itemModel.findOne({
+        where: {
+          id: data.id,
         }
-        
-      }
+      })
+      return itemDetail
+    }
 
-      async searchbyCat(data: SearchByCat){
-        const items = await this.itemModel.findAll({
-            where: {
-                category: data.Category
-            }
-        })
-        return items
+    async addNewItem(data: AddNewItem){
+      let checkedItem = await this.itemCheck({ itemName: data.itemName }) 
+      if ( checkedItem = true) {
+        const newItem = new this.itemModel({
+          itemName: data.itemName,
+          price: data.price,
+          brandId: data.brandName,
+          categotyId: data.categoryId,
+          quantity: data.quantity
+        }) 
+        newItem.save();
+        return newItem
       }
+    }
 
-      async AddItemToBasket(data: AddBasketItem) {
-        const Item = new this.basketItemModel({
-          basketId: data.basketId,
-          itemId: data.itemId,
-          count: data.count
-        })
-        Item.save()
-        return Item
-      }
-
-      async ReturnItemsInBasket(data: ReturnItemInBasket){
-        const basketId = await this.basketModel.findOne({
+    async searchbyCat(data: SearchByCat){
+      const items = await this.itemModel.findAll({
           where: {
-            userId: data.userId
+            category: data.Category
           }
-        })
-        const Items = await this.basketItemModel.findAll({
-          where: {
-            basketId: basketId
-          }
-        })
-        return Items 
-      }
+      })
+      return items
+    }
+
+    async AddItemToBasket(data: AddBasketItem) {
+      const Item = new this.basketItemModel({
+        basketId: data.basketId,
+        itemId: data.itemId,
+        count: data.count
+      })
+      Item.save()
+      return Item
+    }
+
+    async RemoveItemFromBasket(data) {
+
+    }
+
+    async ReturnItemsInBasket(data: ReturnItemInBasket){
+      const basketId = await this.basketModel.findOne({
+        where: {
+          userId: data.userId
+        }
+      })
+      const Items = await this.basketItemModel.findAll({
+        where: {
+          basketId: basketId
+        }
+      })
+      return Items 
+    }
 }

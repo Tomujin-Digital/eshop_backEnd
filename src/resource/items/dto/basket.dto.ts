@@ -28,17 +28,17 @@ export class RemoveBasketITem {
     @ApiProperty()
       @IsString()
       @IsNotEmpty()
-      userId: string;
-
-    @ApiProperty()
-      @IsString()
-      @IsNotEmpty()
       basketId: string;
 
       @ApiProperty()
       @IsString()
       @IsNotEmpty()
       itemId: string;
+
+      @ApiProperty()
+      @IsNotEmpty()
+      count: string;
+
 }
 
 export class ReturnItemInBasket {
