@@ -8,22 +8,18 @@ import { Basket } from "./models/basket.model";
 import { BasketItem } from "./models/basket_item.model";
 import { User } from "../users/models/user.model";
 
-
-export type itemCheck={
+export type ItemCheck={
   itemName: string;
 }
 
-export type itemInBasket={
+export type Checks={
+  itemName: string;
   itemId: string;
   basketId: string;
   count: number;
   userId:string;
 }
 
-export type basketCheck={
-  basketId: string;
-  userId:string;
-}
 @Injectable()
 export class ItemService {
   constructor(
@@ -32,11 +28,11 @@ export class ItemService {
     @InjectModel(BasketItem) private basketItemModel: typeof BasketItem,
     @InjectModel(User) private userModel: typeof User,
     ) {}
-    async BasketDetail ({ basketId }: basketCheck): Promise<any>{
+    async BasketDetail ({ basketId }: Checks): Promise<any>{
       
     }
 
-    async itemCheck({ itemName }: itemCheck): Promise<any>{
+    async itemCheck({ itemName }: ItemCheck): Promise<any>{
       if(!!itemName){
         const itemCheck= await this.itemModel.findOne({where:{
           itemName: itemName
@@ -47,7 +43,7 @@ export class ItemService {
       }
     }
 
-    async basketCheck({ basketId }: basketCheck ): Promise<any>{
+    async basketCheck({ basketId }: Checks ): Promise<any>{
       if(!!basketId){
         const basketCheck= await this.basketModel.findOne(
           {
@@ -64,7 +60,7 @@ export class ItemService {
       }
     }
 
-    async AddItemInBasket({ itemId, basketId, count }: itemInBasket): Promise<any>{
+    async AddItemInBasket({ itemId, basketId, count }: Checks): Promise<any>{
       if(!!itemId || !!basketId) {
         const ItemInBasket = await this.basketItemModel.findOne({
           where: {
@@ -136,18 +132,23 @@ export class ItemService {
       return items
     }
 
-    // async AddItemToBasket(data: AddBasketItem) {
-    //   const Item = new this.basketItemModel({
-    //     basketId: data.basketId,
-    //     itemId: data.itemId,
-    //     count: data.count
-    //   })
-    //   Item.save()
-    //   return Item
-    // }
-
-    async RemoveItemFromBasket(data){
-      
+    async RemoveItemFromBasket({ itemId, basketId, count }: Checks): Promise<any>{
+      const ItemInBasket = await this.basketItemModel.findOne({
+        where: {
+          itemId: itemId,
+          basketId: basketId,
+        }
+      })
+      const ItemDetail = await this.itemModel.findOne({
+        where: {
+          itemId: itemId
+        }
+      })
+      const BasketDetail = await this.basketModel.findOne({
+        where: {
+          id: basketId
+        }
+      })
     }
 
     async ReturnItemsInBasket(data: ReturnItemInBasket){
