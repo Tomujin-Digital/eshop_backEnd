@@ -1,8 +1,7 @@
 
 import { HttpException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
-import axios from "axios";
-import { AddBasketItem, RemoveBasketITem, ReturnItemInBasket } from "./dto/basket.dto";
+import { ReturnItemInBasket } from "./dto/basket.dto";
 import { AddNewItem, ItemDetail, SearchByCat } from "./dto/Item.dto";
 import { Item } from "./models/item.model";
 import { Basket } from "./models/basket.model";
@@ -18,6 +17,12 @@ export type itemInBasket={
   itemId: string;
   basketId: string;
   count: number;
+  userId:string;
+}
+
+export type basketCheck={
+  basketId: string;
+  userId:string;
 }
 @Injectable()
 export class ItemService {
@@ -27,6 +32,9 @@ export class ItemService {
     @InjectModel(BasketItem) private basketItemModel: typeof BasketItem,
     @InjectModel(User) private userModel: typeof User,
     ) {}
+    async BasketDetail ({ basketId }: basketCheck): Promise<any>{
+      
+    }
 
     async itemCheck({ itemName }: itemCheck): Promise<any>{
       if(!!itemName){
@@ -39,18 +47,45 @@ export class ItemService {
       }
     }
 
-    async AddItemInBasket({ itemId, basketId, count}: itemInBasket): Promise<any>{
+    async basketCheck({ basketId }: basketCheck ): Promise<any>{
+      if(!!basketId){
+        const basketCheck= await this.basketModel.findOne(
+          {
+            where: {basketId: basketId}
+          }
+        )
+        return basketCheck
+      }else{
+        const NewBasket = new this.basketModel({
+          userId: basketId
+        })
+        NewBasket.save()
+        return NewBasket
+      }
+    }
+
+    async AddItemInBasket({ itemId, basketId, count }: itemInBasket): Promise<any>{
       if(!!itemId || !!basketId) {
-        const itemCheck = await this.basketItemModel.findOne({
+        const ItemInBasket = await this.basketItemModel.findOne({
           where: {
             itemId: itemId,
             basketId: basketId,
           }
         })
-        if (itemCheck){
+        const ItemDetail = await this.itemModel.findOne({
+          where: {
+            itemId: itemId
+          }
+        })
+        const BasketDetail = await this.basketModel.findOne({
+          where: {
+            id: basketId
+          }
+        })
+        if (ItemInBasket){
           this.basketItemModel
-          .update({ count:itemCheck.count +1 }, {where: { itemId: itemId, basketId: basketId}})
-          itemCheck.save()
+          .update({ count:ItemInBasket.count + count }, {where: { itemId: itemId, basketId: basketId}})
+          ItemInBasket.save()
         }else{
           const Item = new this.basketItemModel({
             basketId: basketId,
@@ -60,6 +95,8 @@ export class ItemService {
           Item.save()
           return Item
         }
+        this.basketModel
+        .update({ totalPrice: BasketDetail.totalPrice + ItemDetail.price }, {where: { basketId: basketId}})
       }
     }
     async items(){
@@ -99,18 +136,18 @@ export class ItemService {
       return items
     }
 
-    async AddItemToBasket(data: AddBasketItem) {
-      const Item = new this.basketItemModel({
-        basketId: data.basketId,
-        itemId: data.itemId,
-        count: data.count
-      })
-      Item.save()
-      return Item
-    }
+    // async AddItemToBasket(data: AddBasketItem) {
+    //   const Item = new this.basketItemModel({
+    //     basketId: data.basketId,
+    //     itemId: data.itemId,
+    //     count: data.count
+    //   })
+    //   Item.save()
+    //   return Item
+    // }
 
-    async RemoveItemFromBasket(data) {
-
+    async RemoveItemFromBasket(data){
+      
     }
 
     async ReturnItemsInBasket(data: ReturnItemInBasket){
