@@ -149,6 +149,13 @@ export class ItemService {
           id: basketId
         }
       })
+      const ItemRemoveFromBasket = await this.basketItemModel.findOne({
+        where:{
+          itemId: itemId,
+        }
+      })
+      this.basketItemModel
+      .update({count: ItemInBasket.count}, {where: {itemId: itemId}})
     }
 
     async ReturnItemsInBasket(data: ReturnItemInBasket){
