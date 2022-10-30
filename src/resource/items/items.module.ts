@@ -2,7 +2,7 @@ import { forwardRef, Module } from "@nestjs/common";
 import { SequelizeModule } from "@nestjs/sequelize";
 import { User } from "../users/models/user.model";
 import { ItemController } from "./items.controller";
-import { ItemService } from "./Items.service";
+import { ItemService } from "./items.service";
 import { Basket } from "./models/basket.model";
 import { BasketItem } from "./models/basket_item.model";
 import { BillDetail } from "./models/bill_detail.model";
