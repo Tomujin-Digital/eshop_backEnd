@@ -2,7 +2,6 @@ import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AddBasketItem, BasketCheck, Order, RemoveBasketITem } from './dto/basket.dto';
 import { AddNewItem } from './dto/Item.dto';
-import { ItemDetail } from './dto/Item.dto';
 import { SearchByCat } from './dto/Item.dto';
 import { ItemService } from './Items.service';
 import { ReturnItemInBasket } from './dto/basket.dto'

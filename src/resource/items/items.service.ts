@@ -205,11 +205,9 @@ export class ItemService {
     // const bill = new this.BillDetailModel({
     //   basketId: data.basketId,
     //   totalPrice: BasketCheck.totalPrice,
-    //   qty: BasketItemCheck
     // })
 
     // const BillItem = new this.BillItemModel({
-
     // })
   }
 }
