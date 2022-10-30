@@ -28,9 +28,6 @@ export class User extends Model {
   phone: string;
 
   @Column
-  companyId: string;
-
-  @Column
   role: string;
 
 

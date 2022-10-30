@@ -23,7 +23,7 @@ export class AuthService {
     });
     return data;
   }
-  
+
   async registerToAuthentication({
     countryCode,
     userName,

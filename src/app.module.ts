@@ -12,6 +12,7 @@ import { BillDetail } from "./resource/items/models/bill_detail.model";
 import { Category } from "./resource/items/models/category.model";
 import { Brands } from "./resource/items/models/brand.model";
 import { ItemModule } from "./resource/items/items.module";
+import { BillItem } from "./resource/items/models/bill_item.model";
 
 
 export const multerOptions = {
@@ -51,7 +52,7 @@ export const multerOptions = {
       password: "Tiny722$",
       database: "grinding_geeks",
       models: [
-        User,Item, Basket, BasketItem, BillDetail, ItemImages, Brands, Category
+        User,Item, Basket, BasketItem, BillDetail, ItemImages, Brands, Category, BillItem
       ],
     }),
     UserModule, ItemModule

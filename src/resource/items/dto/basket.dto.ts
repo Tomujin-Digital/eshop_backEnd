@@ -13,11 +13,6 @@ export class AddBasketItem {
       @IsNotEmpty()
       basketId: string;
 
-      @ApiProperty()
-      @IsString()
-      @IsNotEmpty()
-      userId: string;
-    
     @ApiProperty()
       @IsNotEmpty()
       count: number
@@ -37,7 +32,12 @@ export class RemoveBasketITem {
 
       @ApiProperty()
       @IsNotEmpty()
-      count: string;
+      count: number;
+
+      @ApiProperty()
+      @IsString()
+      @IsNotEmpty()
+      userId: string;
 
 }
 
@@ -52,4 +52,27 @@ export class ReturnItemInBasket {
       @IsNotEmpty()
       basketId: string;
       
+}
+
+export class BasketCheck {
+  @ApiProperty()
+      @IsString()
+      basketId: string;
+
+      @ApiProperty()
+      @IsString()
+      @IsNotEmpty()
+      userId: string;
+
+}
+
+export class Order {
+  @ApiProperty()
+  @IsString()
+  basketId: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  userId: string;
 }
